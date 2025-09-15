@@ -14,6 +14,7 @@ import pygame
 pygame.init()
 
 screen = pygame.display.set_mode((800, 400))
+screen. fill ("white")
 pygame.display.set_caption('Auto rijden!')
 clock = pygame.time.Clock()
 running = True
@@ -22,7 +23,7 @@ background_surface = pygame.Surface((800, 400))
 background_surface.fill("white")
 
 auto_surface = pygame.image.load("Opdrachten/PyGame/Les3/graphics/auto.png").convert_alpha()
-auto_x_pos = 200
+auto_x_pos = 0
 
 while running:
 
@@ -32,8 +33,17 @@ while running:
 
     screen.blit(background_surface, (0, 0))
 
-    auto_x_pos += 1
+    if auto_x_pos >800:
+      auto_x_pos -= 800
+
+    auto_x_pos += 2
     screen.blit(auto_surface, (auto_x_pos, 200))
+
+    = pygame.image.load(" ")
+ 
+
+ 
+      
 
     pygame.display.update()
     clock.tick(60)
