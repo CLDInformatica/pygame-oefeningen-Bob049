@@ -25,6 +25,9 @@ background_surface.fill("white")
 auto_surface = pygame.image.load("Opdrachten/PyGame/Les3/graphics/auto.png").convert_alpha()
 auto_x_pos = 0
 
+regen = pygame.image.load("Opdrachten/PyGame/Les3/graphics/regen.png")
+regen = pygame.transform.scale (regen, (400,200))
+
 while running:
 
     for event in pygame.event.get():
@@ -35,11 +38,12 @@ while running:
 
     if auto_x_pos >800:
       auto_x_pos -= 800
-
     auto_x_pos += 2
+
     screen.blit(auto_surface, (auto_x_pos, 200))
 
-    = pygame.image.load(" ")
+    screen.blit(regen, (300, 200 ))
+
  
 
  

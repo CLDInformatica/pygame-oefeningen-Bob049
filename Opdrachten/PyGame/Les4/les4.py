@@ -6,7 +6,7 @@ Van de weg is echter nog geen rectangle gemaakt.
 Doe het volgende:
 
   - Maak een rectangle van de weg met surface.get_rect()
-  - Zorg dat de center van deze rectangle in het midden van de game staat (weg precies in het midden)
+  -  precies in het  dat de center  deze rectangle in het midden van de game staat (weg)
   - Zorg dat de onderkant van de auto (bottom) op dezelfde plek staat als de onderkant van de weg (dan rijdt de auto namelijk op de weg)
   - Zorg dat wanneer de auto en het obstakel colliden je de auto weer naar het begin van het scherm verplaatst (de pion staat pas op de goede plek als de weg is verplaatst)
 
@@ -30,16 +30,17 @@ pygame.display.set_caption('Auto rijden!')
 clock = pygame.time.Clock()
 running = True
 
-background_surface = pygame.Surface((800, 400))
-background_surface.fill("white")
+background = pygame.Surface((800, 400))
+background.fill("white")
 
-weg_surface = pygame.image.load("Opdrachten/PyGame/Les4/graphics/weg.png").convert()
+weg = pygame.image.load("Opdrachten/PyGame/Les4/graphics/weg.png").convert()
+weg_rect = weg.get_rect(topleft=(0, 75))
 
-auto_surface = pygame.image.load("Opdrachten/PyGame/Les4/graphics/auto.png").convert_alpha()
-auto_rect = auto_surface.get_rect(bottom = 350)
+auto = pygame.image.load("Opdrachten/PyGame/Les4/graphics/auto.png").convert_alpha()
+auto_rect = auto.get_rect(bottom = 350)
 
-obstakel_surface = pygame.image.load("Opdrachten/PyGame/Les4/graphics/obstakel.png").convert_alpha()
-obstakel_rect = obstakel_surface.get_rect(bottomleft = (625, 280))
+obstakel = pygame.image.load("Opdrachten/PyGame/Les4/graphics/obstakel.png").convert_alpha()
+obstakel_rect = obstakel.get_rect(bottomleft = (625, 250))
 
 while running:
 
@@ -47,14 +48,15 @@ while running:
     if event.type == pygame.QUIT:
       running = False
 
-  screen.blit(background_surface, (0, 0))
-  screen.blit(weg_surface, (0, 75))
-  screen.blit(obstakel_surface, obstakel_rect)
+  screen.blit(background, (0, 0))
+  screen.blit(weg, weg_rect)
+  screen.blit(weg , (0, 75))
+  screen.blit(obstakel, obstakel_rect)
   
-  auto_rect.left += 2
+  auto_rect.left += 0
   if auto_rect.left > 800:
     auto_rect.right = 0
-  screen.blit(auto_surface, auto_rect)
+  screen.blit(auto, auto_rect)
 
   pygame.display.update()
   clock.tick(60)
