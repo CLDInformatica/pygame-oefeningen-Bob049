@@ -34,10 +34,12 @@ background = pygame.Surface((800, 400))
 background.fill("white")
 
 weg = pygame.image.load("Opdrachten/PyGame/Les4/graphics/weg.png").convert()
-weg_rect = weg.get_rect(topleft=(0, 75))
+weg_rect = weg.get_rect(center = (400, 200))
+
 
 auto = pygame.image.load("Opdrachten/PyGame/Les4/graphics/auto.png").convert_alpha()
 auto_rect = auto.get_rect(bottom = 350)
+auto_rect = auto.get_rect(midleft = (0,230))
 
 obstakel = pygame.image.load("Opdrachten/PyGame/Les4/graphics/obstakel.png").convert_alpha()
 obstakel_rect = obstakel.get_rect(bottomleft = (625, 250))
@@ -50,13 +52,16 @@ while running:
 
   screen.blit(background, (0, 0))
   screen.blit(weg, weg_rect)
-  screen.blit(weg , (0, 75))
+
   screen.blit(obstakel, obstakel_rect)
   
-  auto_rect.left += 0
+  auto_rect.left += 5
   if auto_rect.left > 800:
     auto_rect.right = 0
   screen.blit(auto, auto_rect)
+  
+  auto_rect.colliderect(obstakel_rect)
+
 
   pygame.display.update()
   clock.tick(60)
