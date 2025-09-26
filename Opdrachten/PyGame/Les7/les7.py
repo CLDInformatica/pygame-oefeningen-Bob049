@@ -21,7 +21,7 @@ font = pygame.font.Font(None, 50)
 clock = pygame.time.Clock()
 
 background_surface = pygame.Surface((400, 300))
-background_surface.fill("white")
+background_surface.fill("turquoise")
 
 enemy_surface = font.render("Dood!", False, "red")
 enemy_rect = enemy_surface.get_rect(center= (300, 200))
@@ -38,10 +38,18 @@ while True:
     if event.type == QUIT:
       pygame.quit()
       sys.exit() 
-      
+
+  if game_actief:   
     if event.type == pygame.KEYDOWN:
       if event.key == pygame.K_SPACE and pikachu_rect.bottom >= 300:
         zwaartekracht = -20
+
+  if pikachu_rect.colliderect(enemy_rect):
+    game_actief = False
+    
+    if game_actief == False:
+      fill surface black
+
 
   screen.blit(background_surface, (0, 0))
   screen.blit(enemy_surface, enemy_rect)
@@ -53,9 +61,10 @@ while True:
     pikachu_rect.bottom = 300
 
   keys = pygame.key.get_pressed()
-  if keys[pygame.K_RIGHT] and pikachu_rect.right + 6 <= 400:
+
+  if keys[pygame.K_RIGHT and pygame.K_d] and pikachu_rect.right + 6 <= 400:
     pikachu_rect.x += 6
-  if keys[pygame.K_LEFT] and pikachu_rect.left - 6 >= 0:
+  if keys[pygame.K_LEFT and pygame.K_a] and pikachu_rect.left - 6 >= 0:
     pikachu_rect.x -= 6
   
   screen.blit(pikachu_surface, pikachu_rect)
