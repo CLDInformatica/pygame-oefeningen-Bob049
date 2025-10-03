@@ -50,6 +50,8 @@ while True:
   if game_actief: 
     if pikachu_rect.colliderect(enemy_rect):
       game_actief = False
+      pikachu_rect.center = ( 200,  150 )
+      
  
     screen.fill("turquoise")
     screen.blit(enemy_surface, enemy_rect)
@@ -70,6 +72,7 @@ while True:
   # Game over    
   else:
     screen.fill("black")
+  
 
   screen.blit(pikachu_surface, pikachu_rect)
 

@@ -12,8 +12,8 @@ os.environ['SDL_AUDIODRIVER'] = 'dsp'
 import pygame, sys
 from pygame.locals import QUIT
 
-def score():
-  time = pygame.time.get_ticks()
+def score(tijd):
+
   score_surface = font.render(str(time), False, "orange")
   score_rect = score_surface.get_rect(center = (200, 100))
   screen.blit(score_surface, score_rect)
@@ -36,6 +36,8 @@ pikachu_rect = pikachu_surface.get_rect(topleft = (180, 20))
 zwaartekracht = 0
 game_actief = True
 
+start_time = pygame.time.get_ticks()
+
 while True:
   
   for event in pygame.event.get():
@@ -55,18 +57,24 @@ while True:
     screen.blit(background_surface, (0, 0))
     screen.blit(enemy_surface, enemy_rect)
     score()
-  
+
+    tijd = (pygame.time.get_ticks() - start_time) // 1000 
+    score(tijd)
+
     zwaartekracht += 1
     pikachu_rect.y += zwaartekracht
   
     if pikachu_rect.bottom >= 300:
       pikachu_rect.bottom = 300
   
+
+      # Poll for input
     keys = pygame.key.get_pressed()
     if keys[pygame.K_RIGHT] and pikachu_rect.right + 6 <= 400:
       pikachu_rect.x += 6
+
     if keys[pygame.K_LEFT] and pikachu_rect.left - 6 >= 0:
-      pikachu_rect.x -= 6
+      pikachu_rect.x -= 6  
 
     if pikachu_rect.colliderect(enemy_rect):
       game_actief = False
